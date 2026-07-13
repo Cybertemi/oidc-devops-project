@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nextcloud
+spec:
+  tls:
+    - hosts:
+        - dev.44-197-210-246.nip.io
+      secretName: nextcloud-tls
+  rules:
+    - host: dev.44-197-210-246.nip.io

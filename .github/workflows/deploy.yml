@@ -1,0 +1,51 @@
+name: Deploy to EKS
+
+on:
+  push:
+    branches:
+      - dev
+      - staging
+      - main
+    paths:
+      - "k8s/**"
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::026090550076:role/oidc-devops-github-actions-role
+          aws-region: us-east-1
+
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --region us-east-1 --name shared-eks-cluster
+
+      # main branch = prod overlay/namespace (no separate "prod" branch —
+      # this is a common convention). dev/staging branches map 1:1 to
+      # their matching overlay.
+      - name: Determine environment
+        id: env
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "overlay=prod" >> "$GITHUB_OUTPUT"
+          else
+            echo "overlay=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy via Kustomize
+        run: kubectl apply -k k8s/overlays/${{ steps.env.outputs.overlay }}
+
+      - name: Verify rollout
+        run: |
+          kubectl rollout status deployment/nextcloud -n ${{ steps.env.outputs.overlay }} --timeout=180s
+          kubectl rollout status deployment/mariadb -n ${{ steps.env.outputs.overlay }} --timeout=180s

@@ -1,0 +1,17 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*terraform.tfvars
+!.terraform.lock.hcl
+.terraform/terraform.tfstate
+*.tfstate
+*.tfstate.*
+environments/platform/.terraform/
+environments/platform/.terraform.tfstate
+environments/platform/.terraform.tfstate.backup
+environments/platform/.terraform.tfvars
+
+# OS
+.DS_Store
