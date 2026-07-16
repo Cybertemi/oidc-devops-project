@@ -4,7 +4,7 @@
 *.tfstate.*
 crash.log
 *terraform.tfvars
-!.terraform.lock.hcl
+.terraform.lock.hcl
 .terraform/terraform.tfstate
 *.tfstate
 *.tfstate.*
@@ -12,6 +12,8 @@ environments/platform/.terraform/
 environments/platform/.terraform.tfstate
 environments/platform/.terraform.tfstate.backup
 environments/platform/.terraform.tfvars
-
+**/.terraform/*
+*.tfstate
+*.tfstate.*
 # OS
 .DS_Store

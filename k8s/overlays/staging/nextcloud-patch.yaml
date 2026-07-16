@@ -9,4 +9,4 @@ spec:
         - name: nextcloud
           env:
             - name: NEXTCLOUD_TRUSTED_DOMAINS
-              value: staging.44-197-210-246.nip.io
+              value: staging.34-200-119-27.nip.io
