@@ -13,9 +13,9 @@ variable "github_repo" {
   default = "oidc-devops-project"
 }
 
-variable "allowed_branch" {
-  type    = string
-  default = "main"
+variable "allowed_branches" {
+  type        = list(string)
+  default     = ["main", "dev", "staging"]
 }
 
 variable "ecr_repository_arn" {

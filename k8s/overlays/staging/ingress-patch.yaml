@@ -5,7 +5,16 @@ metadata:
 spec:
   tls:
     - hosts:
-        - staging.44-197-210-246.nip.io
+        - staging.34-200-119-27.nip.io
       secretName: nextcloud-tls
   rules:
-    - host: staging.44-197-210-246.nip.io
+    - host: staging.34-200-119-27.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nextcloud
+                port:
+                  number: 80

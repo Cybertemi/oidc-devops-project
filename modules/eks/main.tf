@@ -34,6 +34,10 @@ resource "aws_eks_cluster" "main" {
     subnet_ids              = var.private_subnet_ids
     endpoint_private_access = true
     endpoint_public_access  = true # keep true for now so kubectl works easily from your laptop
+   }
+
+  access_config {
+    authentication_mode = "API_AND_CONFIG_MAP"
   }
 
   depends_on = [aws_iam_role_policy_attachment.cluster_policy]
@@ -162,3 +166,4 @@ resource "aws_eks_addon" "ebs_csi_driver" {
 
   depends_on = [aws_eks_node_group.main]
 }
+

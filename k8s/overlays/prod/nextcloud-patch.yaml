@@ -9,4 +9,4 @@ spec:
         - name: nextcloud
           env:
             - name: NEXTCLOUD_TRUSTED_DOMAINS
-              value: 44-197-210-246.nip.io,d34lon2j81jxci.cloudfront.net
+              value: 34-200-119-27.nip.io d34lon2j81jxci.cloudfront.net
