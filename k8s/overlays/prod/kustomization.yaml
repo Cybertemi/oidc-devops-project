@@ -10,14 +10,4 @@ resources:
 patches:
   - path: ingress-patch.yaml
   - path: nextcloud-patch.yaml
-
-secretGenerator:
-  - name: nextcloud-secrets
-    behavior: merge
-    literals:
-      - MYSQL_ROOT_PASSWORD=ProdRootPassword123!
-      - MYSQL_PASSWORD=ProdDbPassword123!
-      - NEXTCLOUD_ADMIN_PASSWORD=ProdAdminPassword123!
-
-generatorOptions:
-  disableNameSuffixHash: true
+  - path: secret-patch.yaml
