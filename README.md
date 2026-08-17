@@ -260,10 +260,6 @@ During development, I gained hands-on experience with:
 * Horizontal Pod Autoscaler
 * Velero Backup & Disaster Recovery
 
----
-
-
----
 
 # Author
 
@@ -273,4 +269,4 @@ During development, I gained hands-on experience with:
 * GitHub: https://github.com/Cybertemi
 * LinkedIn: https://www.linkedin.com/in/iloritemi
 
-⭐ If you found this project useful, consider giving it a star!
+
